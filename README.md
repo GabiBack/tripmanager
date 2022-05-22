@@ -43,6 +43,7 @@ NOTE: Każda funkcjonalność musi być osobnym komponentem!
 - Maven 
 - MySql + SqlWorkbench
 - Vue.js 3
+- Node.js
 - git 
 - IntelliJ wersja ultimate (dla studentów - darmowa licencja) lub dowolnie wybrane IDE 
 - Połączenie z bazą danych należy skonfigurować dla każdego użytkownika lokalnie w pliku application.properties
