@@ -36,3 +36,13 @@ http://localhost:8080/confirm?token=599b9be9-def7-4dd8-ae35-4577ddd8b09d&userId=
 8. Dwie listy rozwijane - "to do" oraz "co zabrać" z możliwością dodania pozycji przez użytkownika 
 
 NOTE: Każda funkcjonalność musi być osobnym komponentem!
+
+## Przygotowanie środowiska
+
+- Java 8 
+- Maven 
+- MySql + SqlWorkbench
+- Vue.js 3
+- git 
+- IntelliJ wersja ultimate (dla studentów - darmowa licencja) lub dowolnie wybrane IDE 
+- Połączenie z bazą danych należy skonfigurować dla każdego użytkownika lokalnie w pliku application.properties
