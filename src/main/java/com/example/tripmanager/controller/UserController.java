@@ -27,14 +27,13 @@ public class UserController {
     @Autowired
     private UserTripService userTripService;
 
-    //wpisanie nickname i sprawdzenie czy jest w bazie,
     @GetMapping("/user/{name}")
     public User confirmUserName(@PathVariable("name") String name) {
         return userService.findUserByName(name);
     }
-    //stworz token dla tego uzytkownika i wyslij maila
+
     @GetMapping("/token/{userId}")
-    public String getToken(@PathVariable("userId") Long id) {
+    public String createTokenAndSendEmail(@PathVariable("userId") Long id) {
         User user = userService.findUserById(id);
         String token = confirmationTokenService.createConfirmationToken(id);
         String link = "localhost:8080/confirm?token="
@@ -46,7 +45,6 @@ public class UserController {
         return "Email send";
     }
 
-    //wpisz token z maila i potwierdz uzytkownika
     @GetMapping("/confirm")
     public Boolean confirmUser(@RequestParam("token") String token,
                                @RequestParam("userId") Long userId){
@@ -54,7 +52,7 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public User getUser(@PathVariable("id") Long id){
+    public User user(@PathVariable("id") Long id){
         return userService.findUserById(id);
     }
 

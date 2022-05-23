@@ -1,13 +1,18 @@
 package com.example.tripmanager.service;
 
 import com.example.tripmanager.entity.Trip;
+import com.example.tripmanager.entity.User;
+import com.example.tripmanager.entity.UserTrip;
 import com.example.tripmanager.repository.TripRepository;
+import com.example.tripmanager.repository.UserRepository;
+import com.example.tripmanager.repository.UserTripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +22,12 @@ public class TripService {
     @Autowired
     private TripRepository tripRepository;
 
+    @Autowired
+    private UserTripRepository userTripRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
     @Transactional
     public Optional<Trip> getTrip(Long id){
         return tripRepository.findById(id);
@@ -25,6 +36,21 @@ public class TripService {
     @Transactional
     public List<Trip> getTrips(){
         return tripRepository.findAll();
+    }
+
+    @Transactional
+    public List<User> tripMembers(Long tripId) {
+        List<UserTrip> userTrips = userTripRepository.findAll();
+        List<User> members = new ArrayList<>();
+
+        for (UserTrip u : userTrips) {
+            Long thisTripId = u.getTripId();
+            if(thisTripId.equals(tripId)) {
+                members.add(userRepository.findById(u.getUserId()).get());
+            }
+        }
+
+        return members;
     }
 
 //    public Optional<User> findByEmail(String email) {
