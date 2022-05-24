@@ -9,6 +9,7 @@ services:
       - MYSQL_DATABASE=$MYSQLDB_DATABASE
     volumes:
       - ../db:/var/lib/mysql
+      - ./mysql_init:/docker-entrypoint-initdb.d
     container_name: mysqldb
   app:
     depends_on:
