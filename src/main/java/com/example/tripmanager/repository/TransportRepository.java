@@ -1,12 +1,9 @@
 package com.example.tripmanager.repository;
 
-import com.example.tripmanager.entity.Trip;
+import com.example.tripmanager.entity.Transport;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
-public interface TripRepository extends JpaRepository<Trip, Long> {
+public interface TransportRepository extends JpaRepository<Transport, Long> {
 }
-
-

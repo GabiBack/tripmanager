@@ -27,7 +27,7 @@ public class UserService {
 
     @Transactional
     public User findUserById(Long id) {
-        return userRepository.getById(id);
+        return userRepository.findById(id).get();
     }
 
     @Transactional

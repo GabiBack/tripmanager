@@ -33,7 +33,7 @@ public class ConfirmationTokenService {
                 .token(token)
                 .createdAt(LocalDateTime.now())
                 .expiresAt(LocalDateTime.now().plusMinutes(15))
-                .user(userRepository.getById(id))
+                .user(userRepository.findById(id).get())
                 .build();
         this.saveConfirmationToken(confirmationToken);
 

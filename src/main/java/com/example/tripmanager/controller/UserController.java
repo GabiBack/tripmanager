@@ -27,7 +27,7 @@ public class UserController {
     @Autowired
     private UserTripService userTripService;
 
-    @GetMapping("/user/{name}")
+    @GetMapping("/user/name/{name}")
     public User confirmUserName(@PathVariable("name") String name) {
         return userService.findUserByName(name);
     }

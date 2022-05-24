@@ -2,7 +2,6 @@ package com.example.tripmanager.controller;
 
 import com.example.tripmanager.entity.Trip;
 import com.example.tripmanager.entity.User;
-import com.example.tripmanager.entity.UserTrip;
 import com.example.tripmanager.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

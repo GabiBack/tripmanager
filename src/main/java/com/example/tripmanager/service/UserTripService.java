@@ -6,6 +6,7 @@ import com.example.tripmanager.repository.UserTripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,7 +19,7 @@ public class UserTripService {
 
     public List<Trip> findUsersTripsById(Long id){
         List<UserTrip> userTripList = userTripRepository.findAll();
-        List<Trip> theUserTrips = null;
+        List<Trip> theUserTrips = new ArrayList<>();
         for(UserTrip userTrip : userTripList) {
             if(userTrip.getUserId().equals(id)) {
                 theUserTrips.add(tripService.getTrip(userTrip.getTripId()).get());

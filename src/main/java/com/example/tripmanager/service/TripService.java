@@ -53,16 +53,6 @@ public class TripService {
         return members;
     }
 
-//    public Optional<User> findByEmail(String email) {
-//        List<User> users = userRepository.findAll();
-//        User user = null;
-//        for (User u : users) {
-//            String userEmail = u.getEmail();
-//            if (userEmail.equals(email)) user = u;
-//            else throw new NullPointerException("user does not exist");
-//        }
-//        return Optional.ofNullable(user);
-//    }
     @Transactional
     public Trip saveTrip(Trip trip){
         return tripRepository.save(Trip.builder()
@@ -107,9 +97,20 @@ public class TripService {
     private int calculateDays(Trip trip){
         LocalDate start = LocalDate.parse(trip.getDateStart());
         LocalDate end = LocalDate.parse(trip.getDateEnd());
-        Period period = Period.between(start, end);
+        Period period = Period.between(start, end).plusDays(1);
         return period.getDays();
     }
+
+    //    public Optional<User> findByEmail(String email) {
+//        List<User> users = userRepository.findAll();
+//        User user = null;
+//        for (User u : users) {
+//            String userEmail = u.getEmail();
+//            if (userEmail.equals(email)) user = u;
+//            else throw new NullPointerException("user does not exist");
+//        }
+//        return Optional.ofNullable(user);
+//    }
 }
 
 
