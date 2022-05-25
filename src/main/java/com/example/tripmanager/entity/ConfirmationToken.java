@@ -1,4 +1,4 @@
-package com.example.tripmanager.token;
+package com.example.tripmanager.entity;
 
 import com.example.tripmanager.entity.User;
 import lombok.*;

@@ -1,6 +1,5 @@
 package com.example.tripmanager.entity;
 
-
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -13,24 +12,24 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "trips")
-public class Trip {
+@Table(name = "arrangements")
+public class Arrangement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @Column(name="place", nullable = false)
-    private String place;
+    @Column(name = "note")
+    private String note;
 
-    @Column(name="date_start", nullable = false)
-    private String dateStart;
+    @Column(name = "type")
+    private int type;
 
-    @Column(name="date_end", nullable = false)
-    private String dateEnd;
+    @NonNull
+    @ManyToOne
+    @JoinColumn(name = "trip_id", nullable = false)
+    private Trip trip;
 
-    @Column(name="days")
-    private int days;
 
 }

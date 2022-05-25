@@ -1,6 +1,6 @@
 package com.example.tripmanager.repository;
 
-import com.example.tripmanager.token.ConfirmationToken;
+import com.example.tripmanager.entity.ConfirmationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -2,7 +2,7 @@ package com.example.tripmanager.service;
 
 import com.example.tripmanager.repository.ConfirmationTokenRepository;
 import com.example.tripmanager.repository.UserRepository;
-import com.example.tripmanager.token.ConfirmationToken;
+import com.example.tripmanager.entity.ConfirmationToken;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
