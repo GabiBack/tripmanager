@@ -29,6 +29,7 @@ public class UserController {
 
     @GetMapping("/user/name/{name}")
     public User confirmUserName(@PathVariable("name") String name) {
+
         return userService.findUserByName(name);
     }
 
@@ -52,7 +53,8 @@ public class UserController {
     }
 
     @GetMapping("/user/{id}")
-    public User user(@PathVariable("id") Long id){
+    public User user(@PathVariable("id") Long id) {
+
         return userService.findUserById(id);
     }
 

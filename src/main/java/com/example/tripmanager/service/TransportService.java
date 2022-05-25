@@ -10,6 +10,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TransportService {
@@ -37,6 +38,22 @@ public class TransportService {
   }
 
   @Transactional
+  public Transport updateTransport(Long id, Transport transport){
+      Optional<Transport> existingTransport = transportRepository.findById(id);
+      if(existingTransport.isPresent()){
+          existingTransport.get().setName(transport.getName());
+          existingTransport.get().setStartDate(transport.getStartDate());
+          existingTransport.get().setStartPlace(transport.getStartPlace());
+          existingTransport.get().setEndDate(transport.getEndDate());
+          existingTransport.get().setEndPlace(transport.getEndPlace());
+          existingTransport.get().setOrder(transport.getOrder());
+          existingTransport.get().setNotes(transport.getNotes());
+          transportRepository.save(existingTransport.get());
+      }
+      return existingTransport.get();
+  }
+
+  @Transactional
   public List<Transport> showTransports(Long id) {
    List<Transport> transports = transportRepository.findAll();
    List<Transport> thisTripTransports = new ArrayList<>();
@@ -50,5 +67,19 @@ public class TransportService {
      thisTripTransports.sort(Comparator.comparingInt(Transport::getOrder));
 
      return thisTripTransports;
+  }
+
+  @Transactional
+  public Optional<Transport> showTransport(Long id) {
+      Optional<Transport> transport = transportRepository.findById(id);
+
+      if(transport.isPresent()) return transport;
+      else throw new IllegalStateException("There is no transport with this id");
+  }
+
+  @Transactional
+    public void deleteTransport(Long id){
+      Optional<Transport> transport = transportRepository.findById(id);
+      transport.ifPresent(value -> transportRepository.delete(value));
   }
 }
