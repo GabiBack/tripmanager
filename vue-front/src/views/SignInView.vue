@@ -1,5 +1,6 @@
 <template>
   <div :style="{backgroundImage:`url(${Background})`}" class="signInBackground">
+  <p>TripManager</p>
     <div class="inputContainer">
       <label>
         Podaj swój login
@@ -27,7 +28,7 @@ async function handleClick() {
     const response = await fetch('https://api.github.com/repositories/19438/issues');
     const body = await response.json();
     console.log(body)
-    this.$router.push('Home')
+    this.$router.push('/welcomeSite')
   }
 }
 export default {
@@ -57,6 +58,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .signInBackground p{
+   top: 0;
+   right: 45px;
+   position: absolute;
+   font-size: 20px;
   }
   .inputContainer {
     display: flex;
