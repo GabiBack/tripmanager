@@ -5,6 +5,7 @@ import About from '../views/AboutView'
 import SignInView from '../views/SignInView'
 import HelloUser from '../views/HelloUser.vue'
 import YourTrip from '../views/YourTrip.vue'
+import TripDetails from '../views/TripDetails.vue'
 
 Vue.use(Router)
 /* eslint-disable */
@@ -36,6 +37,11 @@ export default new Router({
       path: '/your-trip',
       name: 'yourTrip',
       component: YourTrip
+    },
+    {
+      path: '/trip-details',
+      name: 'tripDetails',
+      component: TripDetails
     }
   ]
 })

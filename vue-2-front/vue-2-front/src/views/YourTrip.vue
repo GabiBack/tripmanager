@@ -1,5 +1,5 @@
 <template>
-<div class="helloUserBackground container-fluid">
+<div :style="{backgroundImage:`url(${Background})`}" class="helloUserBackground container-fluid">
 <div class="row">
     <h1>Your trip</h1>
 
@@ -54,6 +54,63 @@
     <b-button href="#" variant="primary">Go somewhere</b-button>
   </b-card>
 </div>
+<div class="row">
+Dodaj podroz
+</div>
+<div class="row">
+    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+      <b-form-group
+        id="input-group-1"
+        label="Miejsce"
+        label-for="input-1"
+        description=""
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.location"
+          type="text"
+          placeholder="miejsce"
+          required
+        ></b-form-input>
+      </b-form-group>
+            <b-form-group
+        id="input-group-2"
+        label="Dzien rozpoczecia:"
+        label-for="input-2"
+        description=""
+      >
+        <b-form-input
+          id="input-2"
+          v-model="form.start"
+          type="date"
+          placeholder="YYYY-mm-dd"
+          required
+        ></b-form-input>
+      </b-form-group>
+            <b-form-group
+        id="input-group-3"
+        label="Dzien zakonczenia:"
+        label-for="input-3"
+        description=""
+      >
+        <b-form-input
+          id="input-3"
+          v-model="form.end"
+          type="date"
+          placeholder="YYYY-mm-dd"
+          required
+        ></b-form-input>
+      </b-form-group>
+
+                  <b-form-group
+        id="input-group-4"
+      >
+
+                    <b-button type="submit" variant="primary">Dalej</b-button>
+</b-form-group>
+      </b-form>
+
+</div>
 </div>
 </div>
 </template>
@@ -82,11 +139,33 @@ export default {
   methods: {
     handleChange,
     handleClick,
+          onSubmit(event) {
+        event.preventDefault()
+        alert(JSON.stringify(this.form))
+      },
+      onReset(event) {
+        event.preventDefault()
+        // Reset our form values
+        this.form.start = ''
+        this.form.end = ''
+        this.form.location = ''
+        // Trick to reset/clear native browser form validation state
+        this.show = false
+        this.$nextTick(() => {
+          this.show = true
+        })
+      }
   },
   data: function () {
     return {
         Background: Background,
-        Routesvg: Routesvg
+        Routesvg: Routesvg,
+                form: {
+          location: '',
+          start: '',
+          end: ''
+                  },
+                  show: true
     }
   }}
   </script>
