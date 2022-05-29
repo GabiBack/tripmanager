@@ -2,14 +2,14 @@
   <button class="customInput" @click="$emit('handleClick')" >{{label}}</button>
 </template>
 
-<script setup>
-  import { defineProps } from 'vue';
-  defineProps({
-      label: {
-        type: String,
-        required: true
-      }
-    })
+<script>
+
+  export default {
+  name: 'CustomButton',
+  props: {
+    label: String
+  }
+}
 </script>
 <style scoped>
   .customInput {

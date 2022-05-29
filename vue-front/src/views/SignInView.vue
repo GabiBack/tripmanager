@@ -16,20 +16,26 @@
 import Background from '../assets/signInBackground.png'
 import CustomInput from '../components/CustomInput.vue'
 import CustomButton from '../components/CustomButton.vue'
-import { ref } from 'vue'
-const inputVal = ref('')
-
+function handleClick () {
+  
+}
 function handleChange(e) {
-  inputVal.value = e.target.value
+  console.log(e)
 }
-async function handleClick() {
-  if (inputVal.value) {
-    const response = await fetch('https://api.github.com/repositories/19438/issues');
-    const body = await response.json();
-    console.log(body)
-    this.$router.push('Home')
-  }
-}
+// import { ref } from 'vue'
+// const inputVal = ref('')
+
+// function handleChange(e) {
+//   inputVal.value = e.target.value
+// }
+// async function handleClick() {
+//   if (inputVal.value) {
+//     const response = await fetch('https://api.github.com/repositories/19438/issues');
+//     const body = await response.json();
+//     console.log(body)
+//     this.$router.push('Home')
+//   }
+// }
 export default {
   components: {
     CustomInput,
