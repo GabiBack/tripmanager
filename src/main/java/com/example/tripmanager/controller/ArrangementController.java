@@ -15,6 +15,7 @@ public class ArrangementController {
     private ArrangementService arrangementService;
 
     //dodaj notatke "co zabrac" ma miec jako {type} 1, a "co zrobić ma {type} 2
+    @CrossOrigin(origins = "*")
     @PostMapping("/arrangement/{type}/{tripId}")
     public Arrangement addNewArrangement(@PathVariable("type") int type,
                                          @PathVariable("tripId") Long tripId,
@@ -23,6 +24,7 @@ public class ArrangementController {
         return arrangementService.saveArrangement(type, arrangement, tripId);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/arrangement/{type}/{tripId}")
     public List<Arrangement> arrangements(@PathVariable("type") int type,
                                           @PathVariable("tripId") Long tripId) {
