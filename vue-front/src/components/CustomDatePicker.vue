@@ -1,14 +1,22 @@
 <template>
-  <input
+  <div
     class="customInput"
     @input="(e) => $emit('handleChange', e)"
-    :placeholder="placeholder"
     :style="customStyles"
-  />
+  >
+  {{placeholder}}
+    <Datepicker locale="pl" :enableTimePicker="false" v-model="date" dark @blur="$emit('date-changed', date)"></Datepicker>
+  </div>
 </template>
 
 <script setup>
-  import { defineProps } from 'vue';
+  import { defineProps, ref } from 'vue';
+  import Datepicker from '@vuepic/vue-datepicker';
+  import '@vuepic/vue-datepicker/dist/main.css'
+
+  const date = ref();
+
+
     defineProps({
       placeholder: {
         type: String,
