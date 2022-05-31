@@ -8,18 +8,18 @@
     <custom-date-picker
       placeholder="Data rozpoczęcia"
       :customStyles="{width: '45%'}"
-      @date-changed="(e) => handleDateChange('startDate', e)"
+      @date-changed="(e) => handleDateChange('dateStart', e)"
     />
     <custom-date-picker
       placeholder="Data zakończenia"
       :customStyles="{width: '45%'}"
-      @date-changed="(e) => handleDateChange('endDate', e)"
+      @date-changed="(e) => handleDateChange('dateEnd', e)"
     />
     <div class="buttonContainer">
       <custom-button
         label="Dodaj"
         @click="addTrip"
-        :disabled="[formValues.place, formValues.startDate, formValues.endDate].some(item => item.length == 0)"
+        :disabled="[formValues.place, formValues.dateStart, formValues.dateEnd].some(item => item.length == 0)"
       />
     </div>
   </div>
@@ -32,7 +32,7 @@ import CustomDatePicker from './CustomDatePicker.vue';
 
 import { ref } from 'vue';
 
-const formValues = ref({ place: '', endDate: '', startDate: '' })
+const formValues = ref({ place: '', dateEnd: '', dateStart: '' })
 
 export default {
   components: {

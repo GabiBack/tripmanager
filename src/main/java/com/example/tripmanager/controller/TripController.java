@@ -29,6 +29,7 @@ public class TripController {
 
         return tripService.getTrips();
     }
+    //dodac get'a dla tripow tylko konkretnego usera /trips/{userId}
 
     @CrossOrigin(origins = "*")
     @GetMapping("/trip/users/{tripId}")
