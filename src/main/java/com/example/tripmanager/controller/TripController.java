@@ -23,13 +23,14 @@ public class TripController {
         return tripService.getTrip(id);
     }
 
+    //dodac get'a dla tripow tylko konkretnego usera /trips/{userId} lub to edytowac
     @CrossOrigin(origins = "*")
     @GetMapping("/trips")
     public List<Trip> getTrips(){
 
         return tripService.getTrips();
     }
-    //dodac get'a dla tripow tylko konkretnego usera /trips/{userId}
+    //
 
     @CrossOrigin(origins = "*")
     @GetMapping("/trip/users/{tripId}")

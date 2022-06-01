@@ -57,10 +57,10 @@ public class UserController {
     public String createTokenAndSendEmail(@PathVariable("userId") Long id) {
         User user = userService.findUserById(id);
         String token = confirmationTokenService.createConfirmationToken(id);
-        String link = "localhost:8080/confirm?token="
-                .concat(token)
-                .concat("&userId=")
-                .concat(user.getId().toString());
+        String link = "localhost:8081/validate-token/"
+                .concat(user.getId().toString())
+                .concat("/")
+                .concat(token);
         emailService.send(user.getEmail(), emailBuildService.buildEmail(user.getName(), link));
 
         return "Email send";

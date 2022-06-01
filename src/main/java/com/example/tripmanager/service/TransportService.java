@@ -49,7 +49,7 @@ public class TransportService {
           existingTransport.get().setOrder(transport.getOrder());
           existingTransport.get().setNotes(transport.getNotes());
           transportRepository.save(existingTransport.get());
-      }
+      } else throw new NullPointerException("There is no transport with this id");
       return existingTransport.get();
   }
 
