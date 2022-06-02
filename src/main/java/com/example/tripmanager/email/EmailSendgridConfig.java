@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Configuration
 public class EmailSendgridConfig {
 
-    @Value("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")
+    @Value("${sendgrid.key}")
     private String key;
 
     @Bean
