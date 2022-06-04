@@ -55,3 +55,11 @@ CREATE TABLE  IF NOT EXISTS `arrangements` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=cp1250;
 
+CREATE TABLE  IF NOT EXISTS `images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `type` varchar(255) NOT NULL,
+  `data` longblob NOT NULL,
+  `trip_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=cp1250;
