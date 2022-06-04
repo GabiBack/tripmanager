@@ -1,6 +1,5 @@
 package com.example.tripmanager.service;
 
-import com.example.tripmanager.email.EmailService;
 import com.example.tripmanager.entity.User;
 import com.example.tripmanager.repository.UserRepository;
 import org.slf4j.Logger;
