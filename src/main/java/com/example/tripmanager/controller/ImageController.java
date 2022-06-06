@@ -1,7 +1,7 @@
 package com.example.tripmanager.controller;
 
 import com.example.tripmanager.entity.Image;
-import com.example.tripmanager.response.MessageResponse;
+import com.example.tripmanager.requesthandlers.response.MessageResponse;
 import com.example.tripmanager.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -44,7 +44,7 @@ public class ImageController {
         }
     }
 
-    @GetMapping("file/{tripId}")
+    @GetMapping("/file/{tripId}")
     public ResponseEntity<byte[]> getImage(@PathVariable("tripId") Long tripId) {
         Optional<Image> image = imageService.getImage(tripId);
         if(image.isPresent()){
@@ -52,10 +52,30 @@ public class ImageController {
                     .header(HttpHeaders.CONTENT_DISPOSITION, "image; filename=\"" + image.get().getName() + "\"")
                     .body(image.get().getData());
         } else {
-            throw new NullPointerException("TThere is no image for this trip");
+            throw new NullPointerException("There is no image found for this trip");
         }
     }
 
-    //edycja obrazka
-    //usuwanie obrazka
+    @PutMapping("/file/{id}")
+    public ResponseEntity<MessageResponse> updateImage(@PathVariable("id") Long id,
+                                                       @RequestParam("file") MultipartFile multipartFile) {
+        String message = "";
+        try {
+            imageService.editImage(id, multipartFile);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(MessageResponse.builder()
+                            .message(message
+                                    .concat("Uploaded file successfully ")
+                                    .concat(Objects.requireNonNull(multipartFile.getOriginalFilename())))
+                            .build());
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
+                    .body(MessageResponse.builder()
+                            .message(message
+                                    .concat("Couldn't upload the file ")
+                                    .concat(Objects.requireNonNull(multipartFile.getOriginalFilename())))
+                            .build());
+        }
+    }
+
 }

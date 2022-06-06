@@ -1,4 +1,4 @@
-package com.example.tripmanager.response;
+package com.example.tripmanager.requesthandlers.response;
 
 import lombok.*;
 import lombok.experimental.Accessors;

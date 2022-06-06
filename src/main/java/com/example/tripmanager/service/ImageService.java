@@ -42,6 +42,19 @@ public class ImageService {
         return findImageByTripId(tripId);
     }
 
+    @Transactional
+    public Optional<Image> editImage(Long imageId, MultipartFile multipartFile) throws IOException {
+        Optional<Image> currentImage = imageRepository.findById(imageId);
+        if(currentImage.isPresent()){
+            String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+            currentImage.get().setName(fileName);
+            currentImage.get().setType(multipartFile.getContentType());
+            currentImage.get().setData(multipartFile.getBytes());
+            imageRepository.save(currentImage.get());
+        }
+        return Optional.of(currentImage.get());
+    }
+
 
     private Optional<Image> findImageByTripId(Long tripId) {
         List<Image> images = imageRepository.findAll();
