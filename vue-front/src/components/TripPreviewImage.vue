@@ -1,5 +1,6 @@
 <template>
-  <div class="previewImage" :style="{backgroundImage:`url(${img})`}" >
+  <div class="container" >
+  <img :src="img" class="previewImage" />
     <div class="imgLabel">
       <h3>{{label}}</h3>
     </div>
@@ -20,13 +21,19 @@
     })
 </script>
 <style scoped>
+  .container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 340px;
+    height: 420px;
+  }
   .previewImage {
     border-radius: 45px;
     width: 340px;
     height: 420px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    position: absolute;
   }
   .imgLabel {
     border-radius: 45px;

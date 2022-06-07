@@ -1,10 +1,10 @@
 <template>
-  <input
-    :type="type"
+  <textarea
     class="customInput"
     @input="(e) => $emit('handleChange', e)"
     :placeholder="placeholder"
     :style="customStyles"
+    rows="5"
   />
 </template>
 
@@ -14,10 +14,6 @@
       placeholder: {
         type: String,
         default: ''
-      },
-      type: {
-        type: String,
-        default: 'text'
       },
       customStyles: {
         type: Object,

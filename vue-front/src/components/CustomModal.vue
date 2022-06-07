@@ -4,7 +4,7 @@
       <div class="modalContainer">
         <div class="modalTitle">
           <div />
-          <h3>Dodaj podróz</h3>
+          <h3>{{title}}</h3>
           <div>
             <a class="close" @click="$emit('closeModal')" />
           </div>
@@ -20,7 +20,11 @@
     defineProps({
       showModal: {
         type: Boolean,
-        required: true
+        required: true,
+      },
+      title: {
+        type: String,
+        required: true,
       },
     })
 </script>
