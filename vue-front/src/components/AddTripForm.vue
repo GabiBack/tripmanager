@@ -15,6 +15,12 @@
       :customStyles="{width: '45%'}"
       @date-changed="(e) => handleDateChange('dateEnd', e)"
     />
+    <custom-input
+      type="file"
+      placeholder="Image"
+      :customStyles="{width: '45%'}"
+      @handle-change="handleImageChange"
+    />
     <div class="buttonContainer">
       <custom-button
         label="Dodaj"
@@ -33,6 +39,7 @@ import CustomDatePicker from './CustomDatePicker.vue';
 import { ref } from 'vue';
 
 const formValues = ref({ place: '', dateEnd: '', dateStart: '' })
+const image = ref({})
 
 export default {
   components: {
@@ -42,8 +49,7 @@ export default {
 },
   methods: {
     addTrip: async function() {
-      console.log(formValues.value)
-      const response = await fetch('http://localhost:8080/trip/', {
+      const trip = await fetch('http://localhost:8080/trip/', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -51,13 +57,36 @@ export default {
         },
         body: JSON.stringify(formValues.value),
       });
-      console.log(response);
+      const { id } = await trip.json()
+
+      if(image.value.name) {
+        const form = new FormData();
+        form.append("file", image.value);
+        try {
+          await fetch(`http://localhost:8080/upload/file/${id}`, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+            },
+            body: form,
+        });
+        } catch (error) {
+          this.$notify({
+            title: "Plik za duzy",
+            type: "error",
+            text: "Ogarnij sie pik nie moze być wiekszy niz 1048576 bajtów",
+          })
+        }
+      }
       this.$emit('refresh-trips');
     },
     handleInputChange: function(e) {
       const values = formValues.value
       values.place = e.target.value
       formValues.value = values
+    },
+    handleImageChange: function(e) {
+      image.value = e.target.files[0]
     },
     handleDateChange: function(type, e) {
       const values = formValues.value
