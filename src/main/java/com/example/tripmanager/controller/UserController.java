@@ -84,7 +84,7 @@ public class UserController {
     @GetMapping("/user/trip/{userId}")
     public List<Trip> userTrips(@PathVariable("userId") Long id){
 
-        return userTripService.findUsersTripsById(id);
+        return userTripService.findUsersTripsByUserId(id);
     }
 
 }

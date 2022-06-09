@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserTripService {
@@ -17,14 +18,19 @@ public class UserTripService {
     @Autowired
     private TripService tripService;
 
-    public List<Trip> findUsersTripsById(Long id){
+    public List<Trip> findUsersTripsByUserId(Long userId){
         List<UserTrip> userTripList = userTripRepository.findAll();
         List<Trip> theUserTrips = new ArrayList<>();
-        for(UserTrip userTrip : userTripList) {
-            if(userTrip.getUserId().equals(id)) {
-                theUserTrips.add(tripService.getTrip(userTrip.getTripId()).get());
+
+        for(UserTrip userTrip : userTripList){
+            Long currentUserId = userTrip.getUserId();
+            if(currentUserId.equals(userId)) {
+                Long tripId = userTrip.getTripId();
+                Optional<Trip> currentTrip = tripService.getTrip(tripId);
+                currentTrip.ifPresent(theUserTrips::add);
             }
         }
+
         return theUserTrips;
     }
 }

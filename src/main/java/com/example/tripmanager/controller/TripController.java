@@ -38,11 +38,13 @@ public class TripController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping("/trip")
-    public Trip addTrip(@RequestBody Trip trip){
+    @PostMapping("/trip/{userId}")
+    public Trip addTrip(@RequestBody Trip trip, @PathVariable("userId") Long userId){
         Trip createdTrip =  tripService.saveTrip(trip);
+        tripService.setTripDuration(createdTrip);
+        tripService.addUserToTheTrip(createdTrip, userId);
 
-        return tripService.setTripDuration(createdTrip);
+        return createdTrip;
     }
 
     @CrossOrigin(origins = "*")

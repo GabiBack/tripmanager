@@ -94,23 +94,21 @@ public class TripService {
         return existingTrip.get();
     }
 
+    @Transactional
+    public UserTrip addUserToTheTrip(Trip trip, Long userId) {
+        Long tripId = trip.getId();
+        return userTripRepository.save(UserTrip.builder()
+                            .userId(userId)
+                            .tripId(tripId)
+                            .build());
+    }
+
     private int calculateDays(Trip trip){
         LocalDate start = LocalDate.parse(trip.getDateStart());
         LocalDate end = LocalDate.parse(trip.getDateEnd());
         Period period = Period.between(start, end).plusDays(1);
         return period.getDays();
     }
-
-    //    public Optional<User> findByEmail(String email) {
-//        List<User> users = userRepository.findAll();
-//        User user = null;
-//        for (User u : users) {
-//            String userEmail = u.getEmail();
-//            if (userEmail.equals(email)) user = u;
-//            else throw new NullPointerException("user does not exist");
-//        }
-//        return Optional.ofNullable(user);
-//    }
 }
 
 

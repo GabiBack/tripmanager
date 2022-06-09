@@ -24,7 +24,7 @@
     <div class="buttonContainer">
       <custom-button
         label="Dodaj"
-        @click="addTrip"
+        @click="() => addTrip($route.params)"
         :disabled="[formValues.place, formValues.dateStart, formValues.dateEnd].some(item => item.length == 0)"
       />
     </div>
@@ -48,8 +48,9 @@ export default {
     CustomDatePicker
 },
   methods: {
-    addTrip: async function() {
-      const trip = await fetch('http://localhost:8080/trip/', {
+    addTrip: async function(routeParams) {
+      const {userId} = routeParams
+      const trip = await fetch(`http://localhost:8080/trip/${userId}`, {
         method: 'POST',
         headers: {
           'Accept': 'application/json',

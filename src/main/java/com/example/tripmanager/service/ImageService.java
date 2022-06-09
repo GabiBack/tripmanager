@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @Service
 public class ImageService {
@@ -58,14 +57,13 @@ public class ImageService {
 
     private Optional<Image> findImageByTripId(Long tripId) {
         List<Image> images = imageRepository.findAll();
+        System.out.println(images);
         Image image = null;
-
-        for(Image currentImage : images){
-            Trip currentTrip = currentImage.getTrip();
-            Long currentTripId = currentTrip.getId();
-            if(currentTripId.equals(tripId)) image = currentImage;
+        for(Image currentImage : images) {
+            Long currentImageTripId = currentImage.getTrip().getId();
+            if(currentImageTripId.equals(tripId)) image = currentImage;
         }
-        return Optional.ofNullable(image);
 
+        return Optional.ofNullable(image);
     }
 }

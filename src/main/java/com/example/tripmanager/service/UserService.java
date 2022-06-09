@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class UserService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
+    //private final static Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
 
     @Autowired
     private UserRepository userRepository;
@@ -37,29 +37,9 @@ public class UserService {
             String userName = u.getName();
             if (userName.equals(name)) user = u;
         }
-        if(user==null) throw new NullPointerException("user not found");
+        if (user == null) throw new NullPointerException("user not found");
 
         return user;
     }
-
-
-//    public Optional<User> findByEmail(String email) {
-//        List<User> users = userRepository.findAll();
-//        User user = null;
-//        for (User u : users) {
-//            String userEmail = u.getEmail();
-//            if (userEmail.equals(email)) user = u;
-//            else throw new NullPointerException("user does not exist");
-//        }
-//        return Optional.ofNullable(user);
-//    }
 }
-
-//    @Transactional
-//    public void saveTestEmployee(){
-//        userRepository.save(User.builder()
-//                .firstName("Test")
-//                .lastName("Testowy")
-//                .build());
-//    }
 

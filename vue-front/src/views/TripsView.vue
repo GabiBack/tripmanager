@@ -16,7 +16,7 @@
           <th><span>Dzień rozpoczęcia</span></th>
           <th><span>Dzień zakończenia</span></th>
         </tr>
-        <tr v-for="({ place, id, dateStart, dateEnd }) in trips" v-bind:key="id" @click="$router.push(`/trips/${id}`)">
+        <tr v-for="({ place, id, dateStart, dateEnd }) in trips" v-bind:key="id" @click="$router.push(`/trip/${id}`)">
           <td><span>{{place}}</span></td>
           <td><span>{{dateStart}}</span></td>
           <td><span>{{dateEnd}}</span></td>
@@ -60,8 +60,9 @@ function readFileAsync(file) {
 }
 
 const modalOpen = ref(false)
-async function fetchTrips() {
-  const response = await fetch(`http://localhost:8080/trips`)
+
+async function fetchTrips(userId) {
+  const response = await fetch(`http://localhost:8080/user/trip/${userId}`)
   const body = await response.json()
   trips.value = body
 
@@ -106,7 +107,8 @@ export default {
     }
   },
   async mounted() {
-    fetchTrips()
+    const {userId} = this.$route.params
+    await fetchTrips(userId)
   }
 }
 
