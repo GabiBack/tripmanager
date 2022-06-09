@@ -16,7 +16,7 @@
           <th><span>Dzień rozpoczęcia</span></th>
           <th><span>Dzień zakończenia</span></th>
         </tr>
-        <tr v-for="({ place, id, dateStart, dateEnd }) in trips" v-bind:key="id" @click="$router.push(`/trips/${id}`)">
+        <tr v-for="({ place, id, dateStart, dateEnd }) in trips" v-bind:key="id" @click="$router.push(`/trip/${id}`)">
           <td><span>{{place}}</span></td>
           <td><span>{{dateStart}}</span></td>
           <td><span>{{dateEnd}}</span></td>
@@ -106,8 +106,9 @@ export default {
     }
   },
   async mounted() {
-    fetchTrips()
-  }
+    const {userId} = this.$route.params
+    await fetchTrips(userId)
+      }
 }
 
 </script>
