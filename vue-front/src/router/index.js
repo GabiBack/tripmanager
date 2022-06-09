@@ -34,12 +34,12 @@ const routes = [
     component: WelcomeView,
   },
   {
-    path: '/trips/:userId',
+    path: '/trips',
     name: 'trips',
     component: TripsView,
   },
   {
-    path: '/trip/:id',
+    path: '/trips/:id',
     name: 'trip',
     component: SingleTripView,
   }

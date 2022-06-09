@@ -31,6 +31,7 @@
 
 <style scoped>
   .overlay {
+    z-index: 999;
     position: fixed;
     width: 100%;
     height: 100vh;

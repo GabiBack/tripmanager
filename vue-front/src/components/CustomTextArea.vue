@@ -1,6 +1,7 @@
 <template>
   <textarea
     class="customInput"
+    :value="value"
     @input="(e) => $emit('handleChange', e)"
     :placeholder="placeholder"
     :style="customStyles"
@@ -12,6 +13,10 @@
   import { defineProps } from 'vue';
     defineProps({
       placeholder: {
+        type: String,
+        default: ''
+      },
+      value: {
         type: String,
         default: ''
       },

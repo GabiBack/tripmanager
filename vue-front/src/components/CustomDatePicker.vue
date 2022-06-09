@@ -4,7 +4,7 @@
     @input="(e) => $emit('handleChange', e)"
     :style="customStyles"
   >
-  {{placeholder}}
+    {{placeholder}}
     <Datepicker locale="pl" :enableTimePicker="false" v-model="date" dark @blur="$emit('date-changed', date)"></Datepicker>
   </div>
 </template>
@@ -14,18 +14,22 @@
   import Datepicker from '@vuepic/vue-datepicker';
   import '@vuepic/vue-datepicker/dist/main.css'
 
-  const date = ref();
+  const props = defineProps({
+    placeholder: {
+      type: String,
+      default: ''
+    },
+    value: {
+      type: String,
+      default: ''
+    },
+    customStyles: {
+      type: Object,
+    },
+  })
+  const date = ref(props.value);
 
 
-    defineProps({
-      placeholder: {
-        type: String,
-        default: ''
-      },
-      customStyles: {
-        type: Object,
-      },
-    })
 </script>
 
 <style scoped>

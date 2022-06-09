@@ -18,7 +18,7 @@
       },
       backgroundColor: {
         type: String,
-        default: '#9E8370',
+        default: 'rgba(42, 27, 20, 0.3)',
       },
       color: {
         type: String,
