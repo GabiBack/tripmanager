@@ -39,7 +39,7 @@ const routes = [
     component: TripsView,
   },
   {
-    path: '/trips/:id',
+    path: '/trip/:id',
     name: 'trip',
     component: SingleTripView,
   }
