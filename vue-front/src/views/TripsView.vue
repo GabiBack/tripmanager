@@ -60,8 +60,8 @@ function readFileAsync(file) {
 }
 
 const modalOpen = ref(false)
-async function fetchTrips() {
-  const response = await fetch(`http://localhost:8080/trips`)
+async function fetchTrips(userId) {
+  const response = await fetch(`http://localhost:8080/trip/${userId}`)
   const body = await response.json()
   trips.value = body
 

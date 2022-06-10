@@ -30,7 +30,8 @@ export default {
 },
   methods: {
     handleButtonClick: function() {
-      this.$router.push(`/trips`)
+      const {userId} = this.$route.params
+      this.$router.push(`/trips/${userId}`)
     }
   },
   data: function () {

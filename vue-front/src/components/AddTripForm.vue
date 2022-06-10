@@ -24,7 +24,8 @@
     <div class="buttonContainer">
       <custom-button
         label="Dodaj"
-         @click="() => addTrip($route.params)"         :disabled="[formValues.place, formValues.dateStart, formValues.dateEnd].some(item => item.length == 0)"
+        @click="() => addTrip($route.params)"
+        :disabled="[formValues.place, formValues.dateStart, formValues.dateEnd].some(item => item.length == 0)"
       />
     </div>
   </div>
