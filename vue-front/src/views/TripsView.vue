@@ -60,9 +60,8 @@ function readFileAsync(file) {
 }
 
 const modalOpen = ref(false)
-
-async function fetchTrips(userId) {
-  const response = await fetch(`http://localhost:8080/user/trip/${userId}`)
+async function fetchTrips() {
+  const response = await fetch(`http://localhost:8080/trips`)
   const body = await response.json()
   trips.value = body
 
@@ -109,7 +108,7 @@ export default {
   async mounted() {
     const {userId} = this.$route.params
     await fetchTrips(userId)
-  }
+      }
 }
 
 </script>

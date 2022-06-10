@@ -34,7 +34,7 @@ const routes = [
     component: WelcomeView,
   },
   {
-    path: '/trips/:userId',
+    path: '/trips/:userId', 
     name: 'trips',
     component: TripsView,
   },

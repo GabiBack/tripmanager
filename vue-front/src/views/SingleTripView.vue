@@ -1,4 +1,5 @@
 <template>
+  <trip-transport-section :place="place" :daysToStart="daysToStart" />
   <div class="arrangementsContainer">
     <div class="arrangements">
       <div class="col">
@@ -32,12 +33,16 @@ import OmanPreview from '../assets/omanPreview.png'
 import CustomButton from '@/components/CustomButton.vue'
 import CustomModal from '@/components/CustomModal.vue'
 import AddArrangementForm from '@/components/AddArrangementForm.vue'
+import TripTransportSection from '@/components/TripTransportSection.vue'
+
 
 import { ref } from 'vue'
 const toDo = ref([]);
 const toTake = ref([]);
 const toDoModalOpen = ref(false)
 const toTakeModalOpen = ref(false)
+const daysToStart = ref('')
+const place = ref('')
 
 async function fetchArrangements(id) {
   const toTakeresponse = await fetch(`http://localhost:8080/arrangements/1/${id}`)
@@ -52,7 +57,8 @@ async function fetchTripDetails(id) {
   const response = await fetch(`http://localhost:8080/trip/${id}`)
   const body = await response.json()
   const daysToTripStart = parseInt((new Date(body.dateStart) - Date.now())  / (1000 * 3600 * 24)) + 1
-  console.log(daysToTripStart)
+  daysToStart.value=daysToTripStart
+  place.value = body.place
 }
 
 export default {
@@ -60,6 +66,7 @@ export default {
     CustomButton,
     CustomModal,
     AddArrangementForm,
+    TripTransportSection,
 },
   methods: {
     toDoHandleModal: function(value) {
@@ -95,6 +102,8 @@ export default {
         toTake,
         toDoModalOpen,
         toTakeModalOpen,
+        daysToStart,
+        place,
         tripId: this.$route.params.id,
     }
   },
